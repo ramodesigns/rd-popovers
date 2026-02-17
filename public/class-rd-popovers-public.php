@@ -73,7 +73,7 @@ class Rd_Popovers_Public {
 		 * class.
 		 */
 
-		wp_enqueue_style( $this->plugin_name, plugin_dir_url( __FILE__ ) . 'css/rd-popovers-public.css', array(), $this->version, 'all' );
+		wp_enqueue_style( $this->plugin_name, plugin_dir_url( __FILE__ ) . 'css/rd-popovers-public.css', array(), filemtime( plugin_dir_path( __FILE__ ) . 'css/rd-popovers-public.css' ), 'all' );
 
 	}
 
@@ -96,7 +96,7 @@ class Rd_Popovers_Public {
 		 * class.
 		 */
 
-		wp_enqueue_script( $this->plugin_name, plugin_dir_url( __FILE__ ) . 'js/rd-popovers-public.js', array( 'jquery' ), $this->version, false );
+		wp_enqueue_script( $this->plugin_name, plugin_dir_url( __FILE__ ) . 'js/rd-popovers-public.js', array( 'jquery' ), filemtime( plugin_dir_path( __FILE__ ) . 'js/rd-popovers-public.js' ), false );
 
 	}
 
