@@ -1,7 +1,7 @@
 /**
  * Scroll-triggered popup functionality for RD Popovers plugin.
  *
- * Triggers at 50% scroll depth, or immediately if the page isn't scrollable.
+ * Triggers at a configurable scroll depth (default 30%), or immediately if the page isn't scrollable.
  * Uses session storage to show only once per session.
  *
  * @package    Rd_Popovers
@@ -11,13 +11,13 @@
 (function() {
 	'use strict';
 
-	var SCROLL_THRESHOLD = 0.5; // 50%
 	var SESSION_KEY = 'spt_popup_shown';
 
 	function ScrollPopupTrigger( popupElement ) {
-		this.popup        = popupElement;
-		this.hasTriggered = false;
-		this.delay        = parseInt( this.popup.dataset.delay, 10 ) || 0;
+		this.popup           = popupElement;
+		this.hasTriggered    = false;
+		this.delay           = parseInt( this.popup.dataset.delay, 10 ) || 0;
+		this.scrollThreshold = ( parseInt( this.popup.dataset.scroll, 10 ) || 30 ) / 100;
 		this.init();
 	}
 
@@ -80,7 +80,7 @@
 		var scrollableHeight = documentHeight - windowHeight;
 		var scrollPercentage = scrollTop / scrollableHeight;
 
-		if ( scrollPercentage >= SCROLL_THRESHOLD ) {
+		if ( scrollPercentage >= this.scrollThreshold ) {
 			this.showPopup();
 		}
 	};
