@@ -88,6 +88,7 @@
 	padding: 40px 30px 30px;
 	max-height: calc(90vh - 40px);
 	overflow-y: auto;
+	overflow-x: hidden;
 }
 
 .spt-popup-inner::-webkit-scrollbar {
