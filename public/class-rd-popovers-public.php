@@ -100,4 +100,63 @@ class Rd_Popovers_Public {
 
 	}
 
+	/**
+	 * Register plugin shortcodes.
+	 *
+	 * @since    1.0.0
+	 */
+	public function register_shortcodes() {
+		add_shortcode( 'scroll_popup_trigger', array( $this, 'scroll_popup_trigger_shortcode' ) );
+	}
+
+	/**
+	 * Render the scroll_popup_trigger shortcode.
+	 *
+	 * Triggers a popup at 50% scroll depth, or immediately if the page
+	 * is not scrollable. Uses session storage to show only once per session.
+	 *
+	 * Usage: [scroll_popup_trigger delay="1000"]Your content here[/scroll_popup_trigger]
+	 *
+	 * @since    1.0.0
+	 * @param    array     $atts     Shortcode attributes.
+	 * @param    string    $content  Shortcode content.
+	 * @return   string              HTML output.
+	 */
+	public function scroll_popup_trigger_shortcode( $atts, $content = null ) {
+		$atts = shortcode_atts(
+			array(
+				'delay' => '0',
+			),
+			$atts,
+			'scroll_popup_trigger'
+		);
+
+		$popup_id = 'scroll-popup-' . uniqid();
+
+		ob_start();
+		?>
+		<div id="<?php echo esc_attr( $popup_id ); ?>"
+		     class="spt-popup-overlay"
+		     data-delay="<?php echo esc_attr( $atts['delay'] ); ?>"
+		     aria-hidden="true"
+		     role="dialog"
+		     aria-modal="true">
+			<div class="spt-popup-container">
+				<div class="spt-popup-content">
+					<button class="spt-popup-close" aria-label="Close popup">
+						<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+							<line x1="18" y1="6" x2="6" y2="18"></line>
+							<line x1="6" y1="6" x2="18" y2="18"></line>
+						</svg>
+					</button>
+					<div class="spt-popup-inner">
+						<?php echo do_shortcode( $content ); ?>
+					</div>
+				</div>
+			</div>
+		</div>
+		<?php
+		return ob_get_clean();
+	}
+
 }
