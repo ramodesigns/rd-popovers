@@ -26,6 +26,8 @@
 			return;
 		}
 
+		document.body.appendChild( this.popup );
+
 		if ( ! this.isPageScrollable() ) {
 			this.showPopup();
 		} else {
