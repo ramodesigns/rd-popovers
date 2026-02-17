@@ -112,10 +112,10 @@ class Rd_Popovers_Public {
 	/**
 	 * Render the scroll_popup_trigger shortcode.
 	 *
-	 * Triggers a popup at 50% scroll depth, or immediately if the page
+	 * Triggers a popup at a configurable scroll depth, or immediately if the page
 	 * is not scrollable. Uses session storage to show only once per session.
 	 *
-	 * Usage: [scroll_popup_trigger delay="1000"]Your content here[/scroll_popup_trigger]
+	 * Usage: [scroll_popup_trigger delay="1000" scroll="50"]Your content here[/scroll_popup_trigger]
 	 *
 	 * @since    1.0.0
 	 * @param    array     $atts     Shortcode attributes.
@@ -125,11 +125,15 @@ class Rd_Popovers_Public {
 	public function scroll_popup_trigger_shortcode( $atts, $content = null ) {
 		$atts = shortcode_atts(
 			array(
-				'delay' => '0',
+				'delay'  => '0',
+				'scroll' => '30',
 			),
 			$atts,
 			'scroll_popup_trigger'
 		);
+
+		$scroll = intval( $atts['scroll'] );
+		$scroll = max( 0, min( 100, $scroll ) );
 
 		$popup_id = 'scroll-popup-' . uniqid();
 
@@ -138,6 +142,7 @@ class Rd_Popovers_Public {
 		<div id="<?php echo esc_attr( $popup_id ); ?>"
 		     class="spt-popup-overlay"
 		     data-delay="<?php echo esc_attr( $atts['delay'] ); ?>"
+		     data-scroll="<?php echo esc_attr( $scroll ); ?>"
 		     aria-hidden="true"
 		     role="dialog"
 		     aria-modal="true">
