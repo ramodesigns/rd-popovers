@@ -125,8 +125,9 @@ class Rd_Popovers_Public {
 	public function scroll_popup_trigger_shortcode( $atts, $content = null ) {
 		$atts = shortcode_atts(
 			array(
-				'delay'  => '0',
-				'scroll' => '30',
+				'delay'    => '0',
+				'scroll'   => '30',
+				'template' => '',
 			),
 			$atts,
 			'scroll_popup_trigger'
@@ -134,6 +135,17 @@ class Rd_Popovers_Public {
 
 		$scroll = intval( $atts['scroll'] );
 		$scroll = max( 0, min( 100, $scroll ) );
+
+		if ( '' !== $atts['template'] ) {
+			$template_id   = preg_replace( '/[^a-z0-9\-]/', '', strtolower( $atts['template'] ) );
+			$template_file = plugin_dir_path( __FILE__ ) . 'templates/template-' . $template_id . '.php';
+
+			if ( file_exists( $template_file ) ) {
+				ob_start();
+				include $template_file;
+				$content = ob_get_clean();
+			}
+		}
 
 		$popup_id = 'scroll-popup-' . uniqid();
 
