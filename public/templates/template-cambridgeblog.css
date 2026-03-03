@@ -1,0 +1,244 @@
+/**
+ * Cambridge Blog template styles.
+ */
+
+/* ── Wrapper: escape .spt-popup-inner's padding ── */
+.spt-cb-wrapper {
+	margin: -40px -30px -30px;
+	font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+}
+
+/* ── Header ── */
+.spt-cb-header {
+	background: #2c3f33;
+	padding: 28px 30px 32px;
+	position: relative;
+	overflow: hidden;
+}
+
+.spt-cb-header::after {
+	content: '';
+	position: absolute;
+	top: -60px;
+	right: -60px;
+	width: 260px;
+	height: 260px;
+	border-radius: 50%;
+	background: rgba(255, 255, 255, 0.06);
+	pointer-events: none;
+}
+
+/* ── Logo ── */
+.spt-cb-logo {
+	display: flex;
+	align-items: center;
+	gap: 14px;
+	margin-bottom: 22px;
+}
+
+.spt-cb-logo-icon {
+	width: 54px;
+	height: 54px;
+	background: #4a8c5a;
+	border-radius: 10px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	flex-shrink: 0;
+}
+
+.spt-cb-logo-text strong {
+	display: block;
+	color: #ffffff;
+	font-size: 17px;
+	font-weight: 700;
+	letter-spacing: 1px;
+	line-height: 1.2;
+}
+
+.spt-cb-logo-text span {
+	display: block;
+	color: rgba(255, 255, 255, 0.65);
+	font-size: 11px;
+	letter-spacing: 1.5px;
+	font-weight: 400;
+	margin-top: 2px;
+}
+
+/* ── Headline ── */
+.spt-cb-headline {
+	color: #ffffff;
+	font-size: 30px;
+	font-weight: 800;
+	line-height: 1.2;
+	margin: 0;
+	padding: 0;
+	border: none;
+}
+
+.spt-cb-accent {
+	color: #5cb85c;
+}
+
+/* ── Close button override for dark header ── */
+.spt-popup-content:has(.spt-cb-wrapper) .spt-popup-close {
+	background: rgba(255, 255, 255, 0.18);
+	color: #ffffff;
+}
+
+.spt-popup-content:has(.spt-cb-wrapper) .spt-popup-close:hover {
+	background: rgba(255, 255, 255, 0.30);
+}
+
+/* ── Body ── */
+.spt-cb-body {
+	background: #ffffff;
+	padding: 26px 30px 30px;
+}
+
+.spt-cb-desc {
+	color: #2c3f33;
+	font-size: 16px;
+	line-height: 1.65;
+	margin: 0 0 22px;
+}
+
+/* ── Stats ── */
+.spt-cb-stats {
+	display: flex;
+	border: 1px solid #ddeedd;
+	border-radius: 10px;
+	overflow: hidden;
+	margin-bottom: 26px;
+	background: #f0f7f0;
+}
+
+.spt-cb-stat {
+	flex: 1;
+	padding: 16px 10px;
+	text-align: center;
+	border-right: 1px solid #ddeedd;
+}
+
+.spt-cb-stat:last-child {
+	border-right: none;
+}
+
+.spt-cb-stat strong {
+	display: block;
+	font-size: 22px;
+	font-weight: 800;
+	color: #2c3f33;
+	line-height: 1.1;
+}
+
+.spt-cb-stat span {
+	display: block;
+	font-size: 10px;
+	font-weight: 700;
+	letter-spacing: 0.8px;
+	color: #5cb85c;
+	text-transform: uppercase;
+	margin-top: 5px;
+}
+
+/* ── Form ── */
+.spt-cb-label {
+	display: block;
+	font-size: 12px;
+	font-weight: 800;
+	letter-spacing: 0.8px;
+	text-transform: uppercase;
+	color: #2c3f33;
+	margin-bottom: 10px;
+}
+
+.spt-cb-form-row {
+	display: flex;
+	gap: 10px;
+	margin-bottom: 12px;
+}
+
+.spt-cb-email {
+	flex: 1;
+	padding: 14px 16px;
+	border: 1.5px solid #c5dfc5;
+	border-radius: 8px;
+	font-size: 15px;
+	color: #333;
+	background: #fff;
+	outline: none;
+	min-width: 0;
+}
+
+.spt-cb-email::placeholder {
+	color: #aaaaaa;
+}
+
+.spt-cb-email:focus {
+	border-color: #5cb85c;
+}
+
+.spt-cb-submit {
+	padding: 14px 22px;
+	background: #5cb85c;
+	color: #ffffff;
+	border: none;
+	border-radius: 8px;
+	font-size: 15px;
+	font-weight: 700;
+	cursor: pointer;
+	white-space: nowrap;
+	transition: background 0.2s ease;
+}
+
+.spt-cb-submit:hover {
+	background: #4cae4c;
+}
+
+.spt-cb-privacy {
+	font-size: 13px;
+	color: #999999;
+	margin: 0;
+	text-align: center;
+	line-height: 1.5;
+}
+
+.spt-cb-privacy a {
+	color: #5cb85c;
+	text-decoration: none;
+}
+
+.spt-cb-privacy a:hover {
+	text-decoration: underline;
+}
+
+/* ── Thank-you state ── */
+.spt-cb-thankyou {
+	display: none;
+	text-align: center;
+	padding: 10px 0 4px;
+	color: #2c3f33;
+	font-size: 16px;
+	font-weight: 600;
+}
+
+.spt-cb-thankyou.spt-cb-visible {
+	display: block;
+}
+
+/* ── Mobile ── */
+@media (max-width: 480px) {
+	.spt-cb-headline {
+		font-size: 24px;
+	}
+
+	.spt-cb-form-row {
+		flex-direction: column;
+	}
+
+	.spt-cb-submit {
+		width: 100%;
+		text-align: center;
+	}
+}
