@@ -38,6 +38,15 @@ if ( ! defined( 'WPINC' ) ) {
 define( 'RD_POPOVERS_VERSION', '1.0.0' );
 
 /**
+ * Controls who can see popups.
+ *
+ * 0 — disabled for all visitors
+ * 1 — visible to admins only (for previewing/demoing)
+ * 2 — enabled for all visitors
+ */
+define( 'RD_POPOVERS_VISIBILITY', 2 );
+
+/**
  * The code that runs during plugin activation.
  * This action is documented in includes/class-rd-popovers-activator.php
  */

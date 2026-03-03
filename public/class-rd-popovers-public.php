@@ -130,6 +130,11 @@ class Rd_Popovers_Public {
 			return '';
 		}
 
+		$visibility = defined( 'RD_POPOVERS_VISIBILITY' ) ? (int) RD_POPOVERS_VISIBILITY : 2;
+		if ( 0 === $visibility || ( 1 === $visibility && ! current_user_can( 'manage_options' ) ) ) {
+			return '';
+		}
+
 		$atts = shortcode_atts(
 			array(
 				'delay'    => '0',
