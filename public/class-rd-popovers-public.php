@@ -137,13 +137,36 @@ class Rd_Popovers_Public {
 		$scroll = max( 0, min( 100, $scroll ) );
 
 		if ( '' !== $atts['template'] ) {
-			$template_id   = preg_replace( '/[^a-z0-9\-]/', '', strtolower( $atts['template'] ) );
-			$template_file = plugin_dir_path( __FILE__ ) . 'templates/template-' . $template_id . '.php';
+			$template_id  = preg_replace( '/[^a-z0-9\-]/', '', strtolower( $atts['template'] ) );
+			$template_dir = plugin_dir_path( __FILE__ ) . 'templates/';
+			$template_url = plugin_dir_url( __FILE__ ) . 'templates/';
 
+			$template_file = $template_dir . 'template-' . $template_id . '.php';
 			if ( file_exists( $template_file ) ) {
 				ob_start();
 				include $template_file;
 				$content = ob_get_clean();
+			}
+
+			$css_file = $template_dir . 'template-' . $template_id . '.css';
+			if ( file_exists( $css_file ) ) {
+				wp_enqueue_style(
+					'spt-template-' . $template_id,
+					$template_url . 'template-' . $template_id . '.css',
+					array( $this->plugin_name ),
+					filemtime( $css_file )
+				);
+			}
+
+			$js_file = $template_dir . 'template-' . $template_id . '.js';
+			if ( file_exists( $js_file ) ) {
+				wp_enqueue_script(
+					'spt-template-' . $template_id,
+					$template_url . 'template-' . $template_id . '.js',
+					array( $this->plugin_name ),
+					filemtime( $js_file ),
+					true
+				);
 			}
 		}
 
