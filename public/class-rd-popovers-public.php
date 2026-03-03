@@ -123,6 +123,13 @@ class Rd_Popovers_Public {
 	 * @return   string              HTML output.
 	 */
 	public function scroll_popup_trigger_shortcode( $atts, $content = null ) {
+		// Only render on single-post/page views, inside the main query's loop.
+		// This prevents the popup from firing when the post appears in secondary
+		// loops such as "related posts" sections.
+		if ( ! is_singular() || ! in_the_loop() || ! is_main_query() ) {
+			return '';
+		}
+
 		$atts = shortcode_atts(
 			array(
 				'delay'    => '0',
