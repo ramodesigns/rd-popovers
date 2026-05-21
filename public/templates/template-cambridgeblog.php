@@ -41,3 +41,28 @@
     </div>
 
 </div>
+
+<?php
+add_filter( 'gform_confirmation', function ( $confirmation, $form, $entry, $ajax ) {
+    GFCommon::log_debug( __METHOD__ . '(): running.' );
+
+    $forms = array( 10 );
+
+    if ( ! in_array( $form['id'], $forms ) ) {
+        return $confirmation;
+    }
+
+    if ( isset( $confirmation['redirect'] ) ) {
+        // current page url
+        global $wp;
+        $url = esc_url_raw( home_url( add_query_arg( $_GET, $wp->request ) ) ) . '#gform_wrapper_1';
+
+        GFCommon::log_debug( __METHOD__ . '(): Redirect to URL: ' . $url );
+
+        $confirmation = '<div class="gform_confirmation_wrapper">Thanks for contacting us! We will get back shortly. This page will now refresh so you can re-submit the form if you want to.</div>';
+        $confirmation .= "<script type=\"text/javascript\">setTimeout(function () { window.location.assign('$url') }, 3500);</script>";
+    }
+
+    return $confirmation;
+}, 10, 4 );
+?>

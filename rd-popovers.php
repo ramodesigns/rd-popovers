@@ -27,7 +27,7 @@
 
 // If this file is called directly, abort.
 if ( ! defined( 'WPINC' ) ) {
-    die;
+	die;
 }
 
 /**
@@ -44,7 +44,7 @@ define( 'RD_POPOVERS_VERSION', '1.0.0' );
  * 1 — visible to admins only (for previewing/demoing)
  * 2 — enabled for all visitors
  */
-define( 'RD_POPOVERS_VISIBILITY', 0 );
+define( 'RD_POPOVERS_VISIBILITY', 2 );
 
 add_filter( 'gform_required_legend', '__return_empty_string' );
 
@@ -53,8 +53,8 @@ add_filter( 'gform_required_legend', '__return_empty_string' );
  * This action is documented in includes/class-rd-popovers-activator.php
  */
 function activate_rd_popovers() {
-    require_once plugin_dir_path( __FILE__ ) . 'includes/class-rd-popovers-activator.php';
-    Rd_Popovers_Activator::activate();
+	require_once plugin_dir_path( __FILE__ ) . 'includes/class-rd-popovers-activator.php';
+	Rd_Popovers_Activator::activate();
 }
 
 /**
@@ -62,8 +62,8 @@ function activate_rd_popovers() {
  * This action is documented in includes/class-rd-popovers-deactivator.php
  */
 function deactivate_rd_popovers() {
-    require_once plugin_dir_path( __FILE__ ) . 'includes/class-rd-popovers-deactivator.php';
-    Rd_Popovers_Deactivator::deactivate();
+	require_once plugin_dir_path( __FILE__ ) . 'includes/class-rd-popovers-deactivator.php';
+	Rd_Popovers_Deactivator::deactivate();
 }
 
 register_activation_hook( __FILE__, 'activate_rd_popovers' );
@@ -74,6 +74,7 @@ register_deactivation_hook( __FILE__, 'deactivate_rd_popovers' );
  * admin-specific hooks, and public-facing site hooks.
  */
 require plugin_dir_path( __FILE__ ) . 'includes/class-rd-popovers.php';
+require plugin_dir_path( __FILE__ ) . 'admin/scroll-to-popover.php';
 
 /**
  * Begins execution of the plugin.
@@ -86,8 +87,8 @@ require plugin_dir_path( __FILE__ ) . 'includes/class-rd-popovers.php';
  */
 function run_rd_popovers() {
 
-    $plugin = new Rd_Popovers();
-    $plugin->run();
+	$plugin = new Rd_Popovers();
+	$plugin->run();
 
 }
 run_rd_popovers();
